@@ -2,23 +2,8 @@
 
 This project involves performing data cleaning, exploration, and analysis on a retail sales dataset. The analysis aims to uncover insights into sales performance, customer behavior, profitability, inventory trends, and detect anomalies. Below is a detailed breakdown of the tasks and SQL queries used to clean and analyze the data.
 
----
 
-## Table of Contents
-
-1. [Data Cleaning](#data-cleaning)
-2. [Data Exploration](#data-exploration)
-3. [Sales Performance Analysis](#sales-performance-analysis)
-4. [Customer Behavior Analysis](#customer-behavior-analysis)
-5. [Profitability Analysis](#profitability-analysis)
-6. [Inventory and Product Analysis](#inventory-and-product-analysis)
-7. [Anomaly Detection](#anomaly-detection)
-8. [Sales Trend Analysis](#sales-trend-analysis)
-9. [Customer Segmentation](#customer-segmentation)
-
----
-
-## Data Cleaning
+## 1. Data Cleaning
 
 ### Checking for NULL Values and Removing Them
 
@@ -38,7 +23,7 @@ WHERE
     gender IS NULL OR age IS NULL OR category IS NULL OR 
     quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
 ```
-## Data Exploration
+## 2. Data Exploration
 To get an overview of the dataset. 
 
 ```sql
@@ -60,7 +45,8 @@ SELECT
     MAX(total_sale) AS max_sale
 FROM retail_sales;
 ```
-## Sales Performance Analysis
+## 3. Data Analysis and Findings
+### Sales Performance Analysis
 ```sql
 --Total Sales and Quantity Sold by Category
 SELECT 
@@ -95,7 +81,7 @@ FROM retail_sales
 GROUP BY DATEPART(HOUR, sale_time)
 ORDER BY hour;
 ```
-## Customer Behavior Analysis
+### Customer Behavior Analysis
 ```sql
 --Top 10 Customers by Total Sales
 SELECT TOP 10
@@ -113,7 +99,7 @@ FROM retail_sales
 GROUP BY customer_id
 ORDER BY transaction_count DESC;
 ```
-## Profitability Analysis
+### Profitability Analysis
 ```sql
 --Profit by Category
 SELECT 
@@ -131,7 +117,7 @@ FROM retail_sales
 GROUP BY customer_id
 ORDER BY total_profit DESC;
 ```
-## Inventory and Product Analysis
+### Inventory and Product Analysis
 ```sql
 --Most Frequent Sold Categories
 SELECT 
@@ -148,7 +134,7 @@ SELECT
 FROM retail_sales
 GROUP BY category;
 ```
-## Anomaly Detection
+### Anomaly Detection
 ```sql
 --Identify Transactions with Unusually High or Low Total Sales
 SELECT *
@@ -161,7 +147,7 @@ SELECT *
 FROM retail_sales
 WHERE cogs > total_sale;
 ```
-## Sales Trend Analysis
+### Sales Trend Analysis
 Analyze Sales Trends Over Time Using SQL Window Functions
 ```sql
 SELECT 
@@ -172,7 +158,7 @@ FROM retail_sales
 GROUP BY sale_date
 ORDER BY sale_date;
 ```
-## Customer Segmentation
+### Customer Segmentation
 Categorize Customers Based on Total Sales
 ```sql
 SELECT 
@@ -186,3 +172,17 @@ SELECT
 FROM retail_sales
 GROUP BY customer_id;
 ```
+## Findings
+ Customer Demographics: The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.
+ High-Value Transactions: Several transactions had a total sale amount greater than 1000, indicating premium purchases.
+ Sales Trends: Monthly analysis shows variations in sales, helping identify peak seasons.
+ Customer Insights: The analysis identifies the top-spending customers and the most popular product categories
+ 
+ ## Report
+ Sales Summary: A detailed report summarizing total sales, customer demographics, and category performance.
+ Trend Analysis: Insights into sales trends across different months and shifts.
+ Customer Insights: Reports on top customers and unique customer counts per category.
+
+ ## Conclusion
+ This analysis provides actionable insights to enhance profitability and customer engagement. By targeting high-performing categories, optimizing inventory, and leveraging customer 
+ segmentation, the business can improve performance and operational efficiency.
